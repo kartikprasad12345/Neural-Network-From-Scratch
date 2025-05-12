@@ -1,0 +1,167 @@
+Machine Learning Assignment 3 - Section B (Perceptron, MLP, SVM)
+This repository contains the implementation and report for Assignment 3 of the CSE343/ECE343: Machine Learning course, focusing on Section B (Scratch Implementation of a Neural Network). The assignment involves implementing a neural network from scratch, training it on the MNIST dataset, and evaluating its performance with different activation functions and weight initialization methods.
+Assignment Overview
+The assignment is divided into theoretical (Section A) and programming (Sections B or C) components. This submission focuses on Section B, which requires:
+
+Neural Network Implementation (5.5 points):
+
+Implement a NeuralNetwork class with configurable parameters (number of layers, neurons per layer, learning rate, activation function, weight initialization, epochs, and batch size).
+Include methods: fit, predict, predict_proba, and score.
+
+
+Activation Functions (2 points):
+
+Implement sigmoid, tanh, ReLU, Leaky ReLU, and softmax (for the output layer) along with their gradient functions.
+
+
+Weight Initialization (1.5 points):
+
+Implement zero, random, and normal initialization methods with appropriate scaling.
+
+
+Training and Evaluation (6 points):
+
+Train the neural network on the MNIST dataset with a 80:10:10 train-validation-test split.
+Use a 4-hidden-layer architecture ([256, 128, 64, 32]), 100 epochs, batch size of 128, and learning rate of 2e-5.
+Evaluate performance for all combinations of activation functions (sigmoid, tanh, ReLU, Leaky ReLU) and weight initializations (zero, random, normal).
+Plot training and validation loss vs. epochs and save the 12 trained models as .pkl files.
+
+
+
+File Structure
+202xxxx_HW3/
+├── code_rollno.ipynb       # Jupyter Notebook with the implementation (Section-B.ipynb)
+├── report_rollno.pdf       # PDF report with code explanations, results, graphs, and findings
+├── models/                 # Directory containing saved models
+│   ├── sigmoid_zero.pkl
+│   ├── sigmoid_random.pkl
+│   ├── sigmoid_normal.pkl
+│   ├── tanh_zero.pkl
+│   ├── tanh_random.pkl
+│   ├── tanh_normal.pkl
+│   ├── relu_zero.pkl
+│   ├── relu_random.pkl
+│   ├── relu_normal.pkl
+│   ├── leakyrelu_zero.pkl
+│   ├── leakyrelu_random.pkl
+│   ├── leakyrelu_normal.pkl
+├── README.md               # This file
+└── MNIST-Handwritting/     # MNIST dataset files (not included in submission but required to run)
+    ├── train-images.idx3-ubyte
+    ├── train-labels.idx1-ubyte
+    ├── t10k-images.idx3-ubyte
+    ├── t10k-labels.idx1-ubyte
+
+Prerequisites
+To run the code, ensure you have the following installed:
+
+Python 3.11+
+
+Required Libraries:
+pip install numpy idx2numpy scikit-learn matplotlib
+
+
+MNIST Dataset:
+
+Download the MNIST dataset files (train-images.idx3-ubyte, train-labels.idx1-ubyte, t10k-images.idx3-ubyte, t10k-labels.idx1-ubyte) from the MNIST database.
+Place them in a directory named MNIST-Handwritting in the same directory as the notebook.
+
+
+
+Running the Code
+
+Setup:
+
+Ensure the MNIST dataset files are in the MNIST-Handwritting directory.
+Install the required Python libraries listed above.
+
+
+Run the Jupyter Notebook:
+
+Open code_rollno.ipynb (originally Section-B.ipynb) in Jupyter Notebook or JupyterLab.
+Execute the cells sequentially to:
+Load and preprocess the MNIST dataset.
+Visualize sample images.
+Train the neural network for all combinations of activation functions and weight initializations.
+Save the trained models as .pkl files in the models directory.
+Compute and print test accuracies for each model.
+
+
+
+
+Expected Output:
+
+The notebook will generate:
+Visualizations of sample MNIST images.
+Training and validation loss plots (saved in the report).
+Test accuracy for each model configuration (printed in the notebook).
+12 saved .pkl model files in the models directory.
+
+
+
+
+Reproducing Results:
+
+The saved models can be loaded and evaluated on the test set during the demo.
+Ensure the loaded_models dictionary is populated with the saved .pkl files to compute test accuracies.
+
+
+
+Implementation Details
+
+Data Preprocessing:
+
+The MNIST images are flattened (from 28x28 to 784-dimensional vectors) and normalized to [0, 1] by dividing by 255.
+Labels are converted to one-hot encoded vectors.
+The dataset is split into 80% training, 10% validation, and 10% test sets using train_test_split from scikit-learn.
+
+
+Neural Network:
+
+The NeuralNetwork class is initialized with 5 layers (input: 784, hidden: [256, 128, 64, 32], output: 10).
+Training uses mini-batch gradient descent with a batch size of 128 and a learning rate of 2e-3 (adjusted from 2e-5 for faster convergence in the provided code).
+The softmax activation is used in the output layer for classification.
+
+
+Activation Functions:
+
+Implemented: sigmoid, tanh, ReLU, Leaky ReLU (with alpha=0.01).
+Softmax is used for the output layer to compute class probabilities.
+
+
+Weight Initialization:
+
+Zero: All weights set to 0.
+Random: Weights sampled from a uniform distribution with appropriate scaling.
+Normal: Weights sampled from a normal distribution (mean=0, std=1) with scaling.
+
+
+Training:
+
+The network is trained for 100 epochs for each combination of activation function and weight initialization.
+Training and validation losses are tracked and plotted.
+Models are saved as .pkl files for reproducibility.
+
+
+
+Results
+The final test accuracies for each configuration are printed in the notebook (e.g., 95.55% for Leaky ReLU with normal initialization). Detailed findings, including loss plots and performance comparisons, are included in the report_rollno.pdf. The report discusses:
+
+Which activation function and weight initialization combination performed best.
+Suboptimal performance cases (e.g., zero initialization often leads to poor convergence).
+Insights into the impact of activation functions and initialization methods on training dynamics.
+
+Notes
+
+The provided code snippet assumes a loaded_models dictionary containing pre-trained models. Ensure the .pkl files are available in the models directory to run the evaluation.
+The learning rate in the code (2e-3) differs from the assignment's specification (2e-5). This was likely adjusted for faster convergence but can be reverted if needed.
+The report (report_rollno.pdf) contains all required visualizations, explanations, and findings as per the assignment instructions.
+
+Submission Details
+
+Roll Number: 202xxxx (replace with your actual roll number)
+Submission Format: A single zip file 202xxxx_HW3.zip containing the notebook, report, saved models, and this README.
+Due Date: 10/11/2024, 11:59 PM
+Submission Platform: Google Classroom
+
+For any issues or clarifications, contact the course TAs during office hours at least two days before the deadline.
